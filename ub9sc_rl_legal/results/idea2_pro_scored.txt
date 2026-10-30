@@ -1,0 +1,12 @@
+FORMALIZE (Lean kernel; tests hidden from the model)
+  seasonal: compiled 2/2; all tests pass 2/2; tests passed 12/12
+  phe_quit: compiled 2/2; all tests pass 2/2; tests passed 8/8
+  construction_quit: compiled 2/2; all tests pass 2/2; tests passed 8/8
+  sud_discharge: compiled 2/2; all tests pass 2/2; tests passed 12/12
+  total: compiled 8/8; all tests pass 8/8
+EXTRACT (case text -> facts -> verdict)
+  seasonal: facts exact 2/6; verdict correct 2/6; wrong: [99, 100, 101, 102]
+  phe_quit: facts exact 4/4; verdict correct 4/4; wrong: []
+  construction_quit: facts exact 4/4; verdict correct 4/4; wrong: []
+  sud_discharge: facts exact 4/6; verdict correct 5/6; wrong: [4]
+  total: facts exact 14/20; verdict correct 15/20

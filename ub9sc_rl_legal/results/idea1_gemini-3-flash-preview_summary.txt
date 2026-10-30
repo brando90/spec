@@ -1,0 +1,20 @@
+scored 250 of 255 rows; missing case numbers: []
+overall       200/250 (0.800)
+complete      73/110 (0.664)
+inconclusive  127/140 (0.907)
+presumptuous (decisive answer on inconclusive) 13/140 (0.093)
+substring rule (repo) overall 206/250 (0.824) ; inconclusive only 127/140 (0.907) ; complete only 79/110 (0.718)
+tokens in/out 52890 738732
+no label parsed: 0
+  gold ELIGIBLE pred ELIGIBLE 30
+  gold ELIGIBLE pred INCONCLUSIVE 22
+  gold ELIGIBLE pred NOT ELIGIBLE 2
+  gold INCONCLUSIVE pred ELIGIBLE 5
+  gold INCONCLUSIVE pred INCONCLUSIVE 127
+  gold INCONCLUSIVE pred NOT ELIGIBLE 8
+  gold NO pred NO 2
+  gold NOT ELIGIBLE pred ELIGIBLE 1
+  gold NOT ELIGIBLE pred INCONCLUSIVE 11
+  gold NOT ELIGIBLE pred NOT ELIGIBLE 37
+  gold YES pred INCONCLUSIVE 1
+  gold YES pred YES 4

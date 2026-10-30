@@ -1,0 +1,301 @@
+{
+ "note": "Provision cards are paraphrases written from the repo's gold explanations (benchmark.xlsx, Long Answer), not authoritative statute text. Legal correctness needs a human legal check. Facts: true/false/null (null = not stated in the case).",
+ "provisions": [
+  {
+   "id": "seasonal",
+   "cite": "C.R.S. 8-73-106(1) as quoted in cases 98-103",
+   "card": "A claimant is a seasonal worker if the employer is a designated seasonal employer and the claimant performed no services for that employer outside the employer's designated seasonal period. A worker who performs services for the same seasonal employer outside the designated period loses seasonal status, unless the worker regains it: a worker who lost status and is then not employed by that employer between any two following designated seasonal periods is a seasonal worker again. Question asked: is the claimant a seasonal worker (verdict ELIGIBLE means yes, NOT_ELIGIBLE means no).",
+   "fields": [
+    [
+     "designatedEmployer",
+     "the employer is a designated seasonal employer"
+    ],
+    [
+     "workedOutsidePeriod",
+     "the claimant performed services for that employer outside its designated seasonal period (at any time)"
+    ],
+    [
+     "regained",
+     "after losing seasonal status, the claimant was not employed by that employer between two following designated seasonal periods"
+    ]
+   ],
+   "ref": "f.designatedEmployer && (!f.workedOutsidePeriod || f.regained)",
+   "tests": [
+    {
+     "case": 98,
+     "facts": [
+      true,
+      false,
+      null
+     ],
+     "gold": "elig"
+    },
+    {
+     "case": 99,
+     "facts": [
+      true,
+      true,
+      false
+     ],
+     "gold": "notElig"
+    },
+    {
+     "case": 100,
+     "facts": [
+      true,
+      true,
+      true
+     ],
+     "gold": "elig"
+    },
+    {
+     "case": 101,
+     "facts": [
+      true,
+      false,
+      null
+     ],
+     "gold": "elig"
+    },
+    {
+     "case": 102,
+     "facts": [
+      null,
+      null,
+      null
+     ],
+     "gold": "inconc"
+    },
+    {
+     "case": 103,
+     "facts": [
+      true,
+      null,
+      null
+     ],
+     "gold": "inconc"
+    }
+   ]
+  },
+  {
+   "id": "phe_quit",
+   "cite": "C.R.S. 8-73-108(4)(y) as quoted in cases 104-107",
+   "card": "A claimant who quit is entitled to a full award if all three hold: a public health emergency has been declared; the claimant is personally immunocompromised and more susceptible to illness during the emergency; and that status is evidenced by the claimant's own health care provider. General concern, or a family member's condition, does not satisfy it.",
+   "fields": [
+    [
+     "emergencyDeclared",
+     "a public health emergency was declared at the time of the quit"
+    ],
+    [
+     "immunocompromised",
+     "the claimant is personally immunocompromised"
+    ],
+    [
+     "providerEvidence",
+     "the claimant's health care provider evidenced the claimant's increased susceptibility"
+    ]
+   ],
+   "ref": "f.emergencyDeclared && f.immunocompromised && f.providerEvidence",
+   "tests": [
+    {
+     "case": 104,
+     "facts": [
+      true,
+      true,
+      true
+     ],
+     "gold": "elig"
+    },
+    {
+     "case": 105,
+     "facts": [
+      true,
+      false,
+      false
+     ],
+     "gold": "notElig"
+    },
+    {
+     "case": 106,
+     "facts": [
+      true,
+      true,
+      null
+     ],
+     "gold": "inconc"
+    },
+    {
+     "case": 107,
+     "facts": [
+      true,
+      null,
+      null
+     ],
+     "gold": "inconc"
+    }
+   ]
+  },
+  {
+   "id": "construction_quit",
+   "cite": "C.R.S. 8-73-108(4)(f) as quoted in cases 121-124",
+   "card": "A claimant who quit a construction job to take another construction job gets a full award only if all four hold: the claimant quit within 30 days of the old job's established termination date; the new job started within 30 days of the quit; the new job offered employment for a longer period than remained on the old job; and the claimant later separated from the new job under conditions that would themselves result in a full award (for example a layoff at completion, not a discharge for cause).",
+   "fields": [
+    [
+     "quitNearOldEnd",
+     "the claimant quit within 30 days of the old job's established termination date"
+    ],
+    [
+     "newStartSoon",
+     "the new job started within 30 days of the quit"
+    ],
+    [
+     "newJobLonger",
+     "the new job offered employment for a longer period than remained on the old job"
+    ],
+    [
+     "newSeparationFullAward",
+     "the separation from the new job was under conditions that result in a full award"
+    ]
+   ],
+   "ref": "f.quitNearOldEnd && f.newStartSoon && f.newJobLonger && f.newSeparationFullAward",
+   "tests": [
+    {
+     "case": 121,
+     "facts": [
+      true,
+      true,
+      true,
+      true
+     ],
+     "gold": "elig"
+    },
+    {
+     "case": 122,
+     "facts": [
+      null,
+      null,
+      null,
+      false
+     ],
+     "gold": "notElig"
+    },
+    {
+     "case": 123,
+     "facts": [
+      true,
+      true,
+      true,
+      null
+     ],
+     "gold": "inconc"
+    },
+    {
+     "case": 124,
+     "facts": [
+      null,
+      null,
+      true,
+      null
+     ],
+     "gold": "inconc"
+    }
+   ]
+  },
+  {
+   "id": "sud_discharge",
+   "cite": "C.R.S. 8-73-108(4)(b)(IV) as described in cases 1-6",
+   "card": "A claimant discharged for using a controlled substance at work is entitled to a full award if all five hold: the conduct was non-volitional; the separation was directly due to the claimant's substance use disorder; the claimant declared the disorder to the division; the claimant provided medical documentation or proof of the disorder; and the claimant provided proof of participation in an approved treatment program that started within four weeks of the medical statement.",
+   "fields": [
+    [
+     "nonVolitional",
+     "the conduct was non-volitional"
+    ],
+    [
+     "directlyDue",
+     "the separation was directly due to the substance use disorder"
+    ],
+    [
+     "declared",
+     "the claimant declared the disorder to the division"
+    ],
+    [
+     "documentation",
+     "the claimant provided medical documentation or proof of the disorder"
+    ],
+    [
+     "treatmentWithin4Weeks",
+     "an approved treatment program started within four weeks of the medical statement"
+    ]
+   ],
+   "ref": "f.nonVolitional && f.directlyDue && f.declared && f.documentation && f.treatmentWithin4Weeks",
+   "tests": [
+    {
+     "case": 1,
+     "facts": [
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "gold": "elig"
+    },
+    {
+     "case": 2,
+     "facts": [
+      true,
+      true,
+      true,
+      true,
+      false
+     ],
+     "gold": "notElig"
+    },
+    {
+     "case": 3,
+     "facts": [
+      true,
+      null,
+      true,
+      true,
+      true
+     ],
+     "gold": "inconc"
+    },
+    {
+     "case": 4,
+     "facts": [
+      true,
+      true,
+      true,
+      true,
+      true
+     ],
+     "gold": "elig"
+    },
+    {
+     "case": 5,
+     "facts": [
+      null,
+      null,
+      true,
+      true,
+      true
+     ],
+     "gold": "inconc"
+    },
+    {
+     "case": 6,
+     "facts": [
+      null,
+      null,
+      true,
+      true,
+      null
+     ],
+     "gold": "inconc"
+    }
+   ]
+  }
+ ]
+}
